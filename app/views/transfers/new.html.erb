@@ -1,0 +1,23 @@
+<h1>Make A Transfer </h1>
+<%= form_with model: @transfer, method: :post, url: transfers_path, scope: :transfer do |f| %>
+
+    <%= f.label :sender %> 
+    <%= f.select :sender_id, @customers.collect { |customer| [ customer.name, customer.id ]} %>
+
+    <%= f.label :receiver %>
+    <%= f.select :receiver_id, @customers.collect { |customer| [ customer.name, customer.id ]} %>
+
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+
+    <%= f.submit "Transfer" %>
+
+<% end %>
+
+<% flash.each do |type, message| %>
+    <% if :error %>
+      <%= message %>
+    <% end %>
+<% end %>
+
+<%= link_to 'view customer details', customers_path %>

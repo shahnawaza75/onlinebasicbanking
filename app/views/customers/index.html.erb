@@ -1,0 +1,19 @@
+<h1>Customers list</h1>
+
+<table>
+<tr>
+  <th>Id</th>
+  <th>Name</th>
+  <th>Email</th>
+  <th>Balance</th>
+</tr>
+<% @customers.order(:id).each do |customer| %>
+    <tr>  
+       <td> <%= customer.id %> </td>
+       <td> <%= link_to customer.name, customer_path(customer.id) %> </td>
+       <td> <%= customer.email %> </td>
+       <td> <%= customer.current_balance %> </td>
+    </tr>
+<% end %>
+</table>
+<%= link_to 'Go to Transfer', transfers_path %>
